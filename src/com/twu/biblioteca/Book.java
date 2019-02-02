@@ -14,4 +14,8 @@ public class Book {
         this.author = author;
         this.year = year;
     }
+
+    public String getBook() {
+        return "Title: " + title + " | Author: " + author + " | Published: " + year;
+    }
 }
