@@ -38,7 +38,7 @@ public class BibliotecaApp {
             System.out.println(s);
         }
 
-        System.out.println("Please select a menu item from above. (Enter the item number.)");
+        System.out.println("Please select a menu item from above (enter the item number) or type 'quit' to exit the application.");
         String menuChoice = getUserInput();
 
         makeMenuChoice(menuChoice);
@@ -53,9 +53,13 @@ public class BibliotecaApp {
     public static void makeMenuChoice(String menuChoice) {
         if(menuChoice.equals("1")) {
             printListOfBooks(listOfBooks);
+            return;
+        }
+        if(menuChoice.equalsIgnoreCase("quit")) {
+            System.exit(0);
         }
         else {
-            System.out.println("Please select a valid option! (Enter the item number.)");
+            System.out.println("Please select a valid option! (Enter the item number)");
             String newChoice = getUserInput();
             makeMenuChoice(newChoice);
         }
