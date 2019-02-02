@@ -32,7 +32,6 @@ public class BibliotecaApp {
 
     public static void displayMenu(){
         ArrayList<String> menuOptions = initialiseMenu();
-        String menuChoice;
 
         System.out.println("Menu");
         for(String s : menuOptions) {
@@ -40,15 +39,25 @@ public class BibliotecaApp {
         }
 
         System.out.println("Please select a menu item from above. (Enter the item number.)");
-        Scanner userInput = new Scanner(System.in);
-        menuChoice = userInput.next();
+        String menuChoice = getUserInput();
 
         makeMenuChoice(menuChoice);
+    }
+
+    public static String getUserInput() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.next();
+        return userInput;
     }
 
     public static void makeMenuChoice(String menuChoice) {
         if(menuChoice.equals("1")) {
             printListOfBooks(listOfBooks);
+        }
+        else {
+            System.out.println("Please select a valid option! (Enter the item number.)");
+            String newChoice = getUserInput();
+            makeMenuChoice(newChoice);
         }
     }
 
