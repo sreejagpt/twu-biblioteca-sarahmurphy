@@ -25,7 +25,6 @@ public class CheckoutBookTest {
 
     @Test
     public void shouldCheckoutGivenBookFromLibrary() {
-
         System.out.println("Please enter the title of the book you wish to checkout.");
         String bookToCheckout = "The Agile Samurai";
         BookList bookList = new BookList();

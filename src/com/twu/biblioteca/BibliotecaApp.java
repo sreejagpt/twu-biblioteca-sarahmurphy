@@ -65,15 +65,26 @@ public class BibliotecaApp {
     }
 
     public static void checkoutBook() {
+        boolean isNotAvailable = false;
         System.out.println("Please enter the title of the book you wish to checkout.");
         String bookToCheckout = getUserInput();
 
         for (int i = 0; i<listOfAvailableBooks.size(); i++) {
             if(listOfAvailableBooks.get(i).getTitle().equalsIgnoreCase(bookToCheckout)) {
+                isNotAvailable = false;
                 listOfAvailableBooks.remove(i);
+                System.out.println("Thank you! Enjoy the book");
                 break;
             }
+            else {
+                isNotAvailable = true;
+            }
         }
+
+        if(isNotAvailable == true) {
+            System.out.println("Sorry, that book is not available");
+        }
+
         displayMenu();
 
     }
