@@ -5,40 +5,27 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    public static ArrayList<Book> listOfBooks = new ArrayList<Book>();
+    public static ArrayList<Book> listOfAvailableBooks = new ArrayList();
 
     public static void main(String[] args) {
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
 
-        listOfBooks = initialiseLibrary();
+        BookList listOfBooks = new BookList();
+        listOfAvailableBooks = listOfBooks.getListOfBooks();
+
         displayMenu();
 
     }
 
-    public static ArrayList<Book> initialiseLibrary() {
-        ArrayList<Book> listOfBooks = new ArrayList<Book>();
-        listOfBooks.add(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
-        listOfBooks.add(new Book("Test-Driven Development By Example", "Kent Beck", 2003));
-        listOfBooks.add(new Book("Head First Java", "Kathy Sierra & Bert Bates", 2005));
-        listOfBooks.add(new Book("Don’t Make Me Think Revisited", "Steve Krug", 2014));
-        return listOfBooks;
-    }
-
-    public static ArrayList<String> initialiseMenu() {
-        ArrayList<String> menuOptions = new ArrayList<String>();
-        menuOptions.add("1. View List of Books");
-        return menuOptions;
-    }
-
     public static void displayMenu(){
-        ArrayList<String> menuOptions = initialiseMenu();
+        Menu menu = new Menu();
+        ArrayList<String> menuOptions = menu.getMenu();
 
-        System.out.println("Menu");
+        System.out.println("\n Menu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
         for(String s : menuOptions) {
             System.out.println(s);
         }
 
-        System.out.println("Please select a menu item from above (enter the item number) or type 'quit' to exit the application.");
         String menuChoice = getUserInput();
 
         makeMenuChoice(menuChoice);
@@ -46,13 +33,17 @@ public class BibliotecaApp {
 
     public static String getUserInput() {
         Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.next();
+        String userInput = scanner.nextLine();
         return userInput;
     }
 
     public static void makeMenuChoice(String menuChoice) {
         if(menuChoice.equals("1")) {
-            printListOfBooks(listOfBooks);
+            printListOfBooks(listOfAvailableBooks);
+            return;
+        }
+        if(menuChoice.equals("2")) {
+            checkoutBook();
             return;
         }
         if(menuChoice.equalsIgnoreCase("quit")) {
@@ -66,9 +57,24 @@ public class BibliotecaApp {
     }
 
     public static void printListOfBooks(ArrayList<Book> listOfBooks) {
-        System.out.println("Here is a list of books in the library:");
+        System.out.println("Here is a list of available books in the library:");
         for (int i = 0; i<listOfBooks.size(); i++) {
             System.out.println(listOfBooks.get(i).getBook());
         }
+        displayMenu();
+    }
+
+    public static void checkoutBook() {
+        System.out.println("Please enter the title of the book you wish to checkout.");
+        String bookToCheckout = getUserInput();
+
+        for (int i = 0; i<listOfAvailableBooks.size(); i++) {
+            if(listOfAvailableBooks.get(i).getTitle().equalsIgnoreCase(bookToCheckout)) {
+                listOfAvailableBooks.remove(i);
+                break;
+            }
+        }
+        displayMenu();
+
     }
 }

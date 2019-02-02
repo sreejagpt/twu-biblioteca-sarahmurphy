@@ -18,4 +18,8 @@ public class Book {
     public String getBook() {
         return "Title: " + title + " | Author: " + author + " | Published: " + year;
     }
+
+    public String getTitle() {
+        return title;
+    }
 }

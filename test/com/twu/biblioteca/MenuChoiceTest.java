@@ -15,7 +15,7 @@ public class MenuChoiceTest {
 
     @Test
     public void shouldAlertUserIfInvalidOptionChosen() {
-        ArrayList<String> menuOptions = new ArrayList<String>();
+        ArrayList<String> menuOptions = new ArrayList<>();
         menuOptions.add("1");
 
         System.out.println("Menu");
