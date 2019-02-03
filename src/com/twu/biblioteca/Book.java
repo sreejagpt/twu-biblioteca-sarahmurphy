@@ -28,6 +28,16 @@ public class Book {
         return title;
     }
 
+    public void printListOfBooks(ArrayList<Book> listOfBooks) {
+        System.out.println("Here is a list of available books in the library:");
+        for (int i = 0; i < listOfBooks.size(); i++) {
+            System.out.println(listOfBooks.get(i).getBook());
+        }
+
+        Menu menu = new Menu();
+        menu.displayMenu();
+    }
+
     public void checkoutBook() {
         boolean isAvailable = true;
         System.out.println("Please enter the title of the book you wish to checkout.");

@@ -30,7 +30,8 @@ public class Menu {
 
     public void makeMenuChoice(String menuChoice) {
         if (menuChoice.equals("1")) {
-            printListOfBooks(listOfAvailableBooks);
+            Book printList = new Book();
+            printList.printListOfBooks(listOfAvailableBooks);
             return;
         }
         if (menuChoice.equals("2")) {
