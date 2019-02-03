@@ -11,6 +11,7 @@ public class Menu {
         menuOptions.add("1. View List of Books");
         menuOptions.add("2. Checkout a Book");
         menuOptions.add("3. Return a Book");
+        menuOptions.add("4. View List of Movies");
         return menuOptions;
     }
 
@@ -30,8 +31,8 @@ public class Menu {
 
     public void makeMenuChoice(String menuChoice) {
         if (menuChoice.equals("1")) {
-            Book printList = new Book();
-            printList.printListOfBooks(listOfAvailableBooks);
+            Book printBookList = new Book();
+            printBookList.printListOfBooks(listOfAvailableBooks);
             return;
         }
         if (menuChoice.equals("2")) {
@@ -42,6 +43,11 @@ public class Menu {
         if (menuChoice.equals("3")) {
             Book returnBook = new Book();
             returnBook.returnBook();
+            return;
+        }
+        if (menuChoice.equals("4")) {
+            Movie printMovieList = new Movie();
+            printMovieList.printListOfMovies(listOfAvailableMovies);
             return;
         }
         if (menuChoice.equalsIgnoreCase("quit")) {
