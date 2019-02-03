@@ -43,7 +43,10 @@ public class BibliotecaApp {
             return;
         }
         if (menuChoice.equals("2")) {
-            checkoutBook();
+            Book checkoutBook = new Book();
+            checkoutBook.checkoutBook();
+
+            //checkoutBook();
             return;
         }
         if (menuChoice.equals("3")) {
@@ -63,28 +66,6 @@ public class BibliotecaApp {
         System.out.println("Here is a list of available books in the library:");
         for (int i = 0; i < listOfBooks.size(); i++) {
             System.out.println(listOfBooks.get(i).getBook());
-        }
-        displayMenu();
-    }
-
-    public static void checkoutBook() {
-        boolean isAvailable = true;
-        System.out.println("Please enter the title of the book you wish to checkout.");
-        String bookToCheckout = getUserInput();
-
-        for (int i = 0; i < listOfAvailableBooks.size(); i++) {
-            if (listOfAvailableBooks.get(i).getTitle().equalsIgnoreCase(bookToCheckout)) {
-                isAvailable = true;
-                listOfAvailableBooks.remove(i);
-                System.out.println("Thank you! Enjoy the book");
-                break;
-            } else {
-                isAvailable = false;
-            }
-        }
-
-        if(isAvailable == false) {
-            System.out.println("Sorry, that book is not available");
         }
         displayMenu();
     }
