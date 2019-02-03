@@ -1,5 +1,7 @@
 package com.twu.biblioteca;
 
+import java.util.ArrayList;
+
 import static com.twu.biblioteca.BibliotecaApp.*;
 
 public class Book {
@@ -45,6 +47,67 @@ public class Book {
         if(isAvailable == false) {
             System.out.println("Sorry, that book is not available");
         }
-        displayMenu();
+        Menu menu = new Menu();
+        menu.displayMenu();
+    }
+
+    public void returnBook() {
+        System.out.println("Please enter the title of the book you wish to return.");
+        String bookToReturn = getUserInput();
+
+        checkBookBelongsToLibrary(bookToReturn);
+
+        Menu menu = new Menu();
+        menu.displayMenu();
+    }
+
+    public void checkBookBelongsToLibrary(String book) {
+        boolean doesBelong;
+        boolean isCheckedOut;
+
+        BookList bookList = new BookList();
+        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+
+        doesBelong = checkBookBelongs(book);
+        isCheckedOut = checkBookIsCheckedOut(book);
+
+        if(doesBelong == true && isCheckedOut == true) {
+            for(Book b1 : listOfLibraryBooks) {
+                if(b1.getTitle().equalsIgnoreCase(book)) {
+                    listOfAvailableBooks.add(b1);
+                }
+            }
+            System.out.println("Thank you for returning the book.");
+        }
+        else {
+            System.out.println("That is not a valid book to return.");
+        }
+    }
+
+    public boolean checkBookBelongs(String book) {
+        BookList bookList = new BookList();
+        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+
+        for(Book b1 : listOfLibraryBooks) {
+            if(b1.getTitle().equalsIgnoreCase(book)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkBookIsCheckedOut(String book) {
+        ArrayList<String> listOfAvailableBookTitles = new ArrayList<>();
+
+        for(Book b : listOfAvailableBooks) {
+            listOfAvailableBookTitles.add(b.getTitle().toLowerCase());
+        }
+
+        if(listOfAvailableBookTitles.contains(book.toLowerCase())) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }
