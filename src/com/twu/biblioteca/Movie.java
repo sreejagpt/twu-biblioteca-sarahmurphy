@@ -2,6 +2,8 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
+import static com.twu.biblioteca.BibliotecaApp.*;
+
 public class Movie {
 
     public String name;
@@ -34,6 +36,29 @@ public class Movie {
             System.out.println(listOfMovies.get(i).getMovie());
         }
 
+        Menu menu = new Menu();
+        menu.displayMenu();
+    }
+
+    public void checkoutMovie() {
+        boolean isAvailable = true;
+        System.out.println("Please enter the name of the movie you wish to checkout.");
+        String movieToCheckout = getUserInput();
+
+        for (int i = 0; i < listOfAvailableMovies.size(); i++) {
+            if (listOfAvailableMovies.get(i).getName().equalsIgnoreCase(movieToCheckout)) {
+                isAvailable = true;
+                listOfAvailableMovies.remove(i);
+                System.out.println("Thank you! Enjoy the movie");
+                break;
+            } else {
+                isAvailable = false;
+            }
+        }
+
+        if(isAvailable == false) {
+            System.out.println("Sorry, that movie is not available");
+        }
         Menu menu = new Menu();
         menu.displayMenu();
     }

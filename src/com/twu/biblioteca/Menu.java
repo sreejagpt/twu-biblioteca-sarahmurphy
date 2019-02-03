@@ -12,6 +12,7 @@ public class Menu {
         menuOptions.add("2. Checkout a Book");
         menuOptions.add("3. Return a Book");
         menuOptions.add("4. View List of Movies");
+        menuOptions.add("5. Checkout a Movie");
         return menuOptions;
     }
 
@@ -48,6 +49,11 @@ public class Menu {
         if (menuChoice.equals("4")) {
             Movie printMovieList = new Movie();
             printMovieList.printListOfMovies(listOfAvailableMovies);
+            return;
+        }
+        if (menuChoice.equals("5")) {
+            Movie checkoutMovie = new Movie();
+            checkoutMovie.checkoutMovie();
             return;
         }
         if (menuChoice.equalsIgnoreCase("quit")) {

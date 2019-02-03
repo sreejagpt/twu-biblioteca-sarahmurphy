@@ -9,7 +9,6 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class MovieTest {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     @Test
     public void shouldPrintListOfMovies() {
@@ -20,5 +19,15 @@ public class MovieTest {
         printMovieList.printListOfMovies(listOfAvailableMovies);
 
         //assertThat();
+    }
+
+    @Test
+    public void shouldCheckoutMovie() {
+        MovieList listOfMovies = new MovieList();
+        ArrayList<Movie> listOfAvailableMovies = listOfMovies.getListOfMovies();
+
+        Movie movie = new Movie();
+        movie.checkoutMovie();
+
     }
 }
