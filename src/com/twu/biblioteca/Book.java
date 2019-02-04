@@ -49,7 +49,7 @@ public class Book {
         String bookToCheckout = getUserInput();
 
         for (int i = 0; i < listOfAvailableBooks.size(); i++) {
-            if (listOfAvailableBooks.get(i).getTitle().equalsIgnoreCase(bookToCheckout)) {
+            if (bookToCheckOutIsAvailable(i, bookToCheckout)) {
                 isAvailable = true;
                 listOfAvailableBooks.remove(i);
                 System.out.println("Thank you! Enjoy the book");
@@ -64,6 +64,10 @@ public class Book {
         }
         Menu menu = new Menu();
         menu.displayMenu();
+    }
+
+    public boolean bookToCheckOutIsAvailable(int index, String bookToCheckout) {
+        return listOfAvailableBooks.get(index).getTitle().equalsIgnoreCase(bookToCheckout);
     }
 
     public void returnBook() {
