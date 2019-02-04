@@ -31,11 +31,16 @@ public class Book {
     public void printListOfBooks(ArrayList<Book> listOfBooks) {
         System.out.println("Here is a list of available books in the library:");
         for (int i = 0; i < listOfBooks.size(); i++) {
-            System.out.println(listOfBooks.get(i).getBook());
+            System.out.println(printBook(listOfBooks, i));
         }
 
         Menu menu = new Menu();
         menu.displayMenu();
+    }
+
+    public String printBook(ArrayList<Book> listOfBooks, int index) {
+        String book = listOfBooks.get(index).getBook();
+        return book;
     }
 
     public void checkoutBook() {
