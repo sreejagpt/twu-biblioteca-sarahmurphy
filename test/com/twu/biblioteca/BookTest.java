@@ -33,4 +33,16 @@ public class BookTest {
         //assertThat(book.checkStoryIsAvailable("The Agile Samurai", listOfAvailableBooks), is(true));
 
     }
+
+    @ Test
+    public void shouldCheckIfBookBelongsToLibrary() {
+        Book book = new Book();
+        assertThat(book.checkBookBelongs("Head First Java"), is(true));
+    }
+
+    @ Test
+    public void shouldCheckIfBookIsCheckedOut() {
+        Book book = new Book();
+        assertThat(book.checkBookIsCheckedOut("Checked Out Book"), is(true));
+    }
 }

@@ -28,37 +28,33 @@ public class Menu {
         String menuChoice = getUserInput();
 
         makeMenuChoice(menuChoice);
+        displayMenu();
     }
 
     public void makeMenuChoice(String menuChoice) {
         if (menuChoice.equals("1")) {
             Book printBookList = new Book();
             printBookList.printList(listOfAvailableBooks);
-            displayMenu();
             return;
         }
         if (menuChoice.equals("2")) {
             Story checkoutBook = new Story();
             checkoutBook.checkoutStory(listOfAvailableBooks);
-            displayMenu();
             return;
         }
         if (menuChoice.equals("3")) {
             Book returnBook = new Book();
             returnBook.returnBook();
-            displayMenu();
             return;
         }
         if (menuChoice.equals("4")) {
             Movie printMovieList = new Movie();
             printMovieList.printList(listOfAvailableMovies);
-            displayMenu();
             return;
         }
         if (menuChoice.equals("5")) {
             Movie checkoutMovie = new Movie();
             checkoutMovie.checkoutStory(listOfAvailableMovies);
-            displayMenu();
             return;
         }
         if (menuChoice.equalsIgnoreCase("quit")) {
