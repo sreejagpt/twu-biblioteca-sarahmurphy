@@ -17,8 +17,8 @@ public class BibliotecaApp {
         MovieList listOfMovies = new MovieList();
         listOfAvailableMovies = listOfMovies.getListOfMovies();
 
-        Book book = new Book();
-        book.displayMenu();
+        Menu menu = new Menu();
+        menu.displayMenu();
     }
 
     public static String getUserInput() {

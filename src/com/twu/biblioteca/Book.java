@@ -19,8 +19,6 @@ public class Book extends Story {
         String bookToReturn = getUserInput();
 
         checkBookBelongsToLibrary(bookToReturn);
-
-        displayMenu();
     }
 
     public void checkBookBelongsToLibrary(String book) {

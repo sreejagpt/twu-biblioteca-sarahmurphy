@@ -20,27 +20,11 @@ public class Story {
         return title;
     }
 
-    public void displayMenu() {
-        Menu menu = new Menu();
-        ArrayList<String> menuOptions = menu.getMenu();
-
-        System.out.println("\n Menu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
-        for (String s : menuOptions) {
-            System.out.println(s);
-        }
-
-        String menuChoice = getUserInput();
-
-        menu.makeMenuChoice(menuChoice);
-    }
-
     public void printList(ArrayList<? extends Story> list) {
         System.out.println("Here is a list of available books in the library:");
         for (int i = 0; i < list.size(); i++) {
             System.out.println(printStory(list, i));
         }
-
-        displayMenu();
     }
 
     public String printStory(ArrayList<? extends Story> list, int index) {
@@ -58,31 +42,39 @@ public class Story {
         return story;
     }
 
-    public void checkoutStory() {
-        boolean isAvailable = true;
+    public void checkoutStory(ArrayList<? extends Story> list) {
         System.out.println("Please enter the title you wish to checkout.");
         String storyToCheckout = getUserInput();
 
-        for (int i = 0; i < listOfAvailableBooks.size(); i++) {
-            if (storyToCheckOutIsAvailable(i, storyToCheckout)) {
+        checkStoryIsAvailable(storyToCheckout, list);
+    }
+
+    public void checkStoryIsAvailable(String storyToCheckout, ArrayList<? extends Story> list) {
+        boolean isAvailable = true;
+
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getTitle().equalsIgnoreCase(storyToCheckout)) {
                 isAvailable = true;
-                listOfAvailableBooks.remove(i);
-                System.out.println("Thank you! Enjoy!");
+                checkoutOutStory(i, list);
                 break;
             } else {
                 isAvailable = false;
             }
         }
 
-        if(isAvailable == false) {
-            System.out.println("Sorry, that title is not available");
+        if(!isAvailable) {
+            printUnavailableMessage();
         }
 
-        displayMenu();
     }
 
-    public boolean storyToCheckOutIsAvailable(int index, String storyToCheckout) {
-        return listOfAvailableBooks.get(index).getTitle().equalsIgnoreCase(storyToCheckout);
+    public void checkoutOutStory(int index, ArrayList<? extends Story> list) {
+        list.remove(index);
+        System.out.println("Thank you! Enjoy!");
+    }
+
+    public void printUnavailableMessage() {
+        System.out.println("Sorry, that title is not available");
     }
 
 }
