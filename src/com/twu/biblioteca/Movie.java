@@ -1,9 +1,5 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-
-import static com.twu.biblioteca.BibliotecaApp.*;
-
 public class Movie extends Story {
 
     public Movie() {}

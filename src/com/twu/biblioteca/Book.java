@@ -25,23 +25,28 @@ public class Book extends Story {
         boolean doesBelong;
         boolean isCheckedOut;
 
-        BookList bookList = new BookList();
-        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
-
         doesBelong = checkBookBelongs(book);
         isCheckedOut = checkBookIsCheckedOut(book);
 
-        if(doesBelong == true && isCheckedOut == true) {
-            for(Book b : listOfLibraryBooks) {
-                if(b.getTitle().equalsIgnoreCase(book)) {
-                    listOfAvailableBooks.add(b);
-                }
-            }
-            System.out.println("Thank you for returning the book.");
-        }
-        else {
+        if(doesBelong && isCheckedOut) {
+            returnBookToLibrary(book);
+        } else {
             System.out.println("That is not a valid book to return.");
         }
+    }
+
+    public void returnBookToLibrary(String book) {
+        BookList bookList = new BookList();
+        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+
+        // Gets all details of book to add back to library list
+        for(Book b : listOfLibraryBooks) {
+            if(b.getTitle().equalsIgnoreCase(book)) {
+                listOfAvailableBooks.add(b);
+            }
+        }
+        System.out.println("Thank you for returning the book.");
+
     }
 
     public boolean checkBookBelongs(String book) {
@@ -65,8 +70,7 @@ public class Book extends Story {
 
         if(listOfAvailableBookTitles.contains(book.toLowerCase())) {
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
