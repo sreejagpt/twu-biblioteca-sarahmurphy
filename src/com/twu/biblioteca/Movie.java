@@ -36,8 +36,8 @@ public class Movie {
             System.out.println(listOfMovies.get(i).getMovie());
         }
 
-        Menu menu = new Menu();
-        menu.displayMenu();
+        Book book = new Book();
+        book.displayMenu();
     }
 
     public void checkoutMovie() {
@@ -59,7 +59,8 @@ public class Movie {
         if(isAvailable == false) {
             System.out.println("Sorry, that movie is not available");
         }
-        Menu menu = new Menu();
-        menu.displayMenu();
+
+        Book book = new Book();
+        book.displayMenu();
     }
 }

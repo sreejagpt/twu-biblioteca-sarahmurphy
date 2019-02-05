@@ -28,14 +28,27 @@ public class Book {
         return title;
     }
 
+    public void displayMenu() {
+        Menu menu = new Menu();
+        ArrayList<String> menuOptions = menu.getMenu();
+
+        System.out.println("\n Menu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
+        for (String s : menuOptions) {
+            System.out.println(s);
+        }
+
+        String menuChoice = getUserInput();
+
+        menu.makeMenuChoice(menuChoice);
+    }
+
     public void printListOfBooks(ArrayList<Book> listOfBooks) {
         System.out.println("Here is a list of available books in the library:");
         for (int i = 0; i < listOfBooks.size(); i++) {
             System.out.println(printBook(listOfBooks, i));
         }
 
-        Menu menu = new Menu();
-        menu.displayMenu();
+        displayMenu();
     }
 
     public String printBook(ArrayList<Book> listOfBooks, int index) {
@@ -62,8 +75,8 @@ public class Book {
         if(isAvailable == false) {
             System.out.println("Sorry, that book is not available");
         }
-        Menu menu = new Menu();
-        menu.displayMenu();
+
+        displayMenu();
     }
 
     public boolean bookToCheckOutIsAvailable(int index, String bookToCheckout) {
@@ -76,8 +89,7 @@ public class Book {
 
         checkBookBelongsToLibrary(bookToReturn);
 
-        Menu menu = new Menu();
-        menu.displayMenu();
+        displayMenu();
     }
 
     public void checkBookBelongsToLibrary(String book) {
