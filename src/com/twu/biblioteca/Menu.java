@@ -37,8 +37,8 @@ public class Menu {
             return;
         }
         if (menuChoice.equals("2")) {
-            Book checkoutBook = new Book();
-            checkoutBook.checkoutBook();
+            Story checkoutBook = new Story();
+            checkoutBook.checkoutStory();
             return;
         }
         if (menuChoice.equals("3")) {

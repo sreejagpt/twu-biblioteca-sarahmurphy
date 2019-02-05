@@ -14,33 +14,6 @@ public class Book extends Story {
         this.year = year;
     }
 
-    public void checkoutBook() {
-        boolean isAvailable = true;
-        System.out.println("Please enter the title of the book you wish to checkout.");
-        String bookToCheckout = getUserInput();
-
-        for (int i = 0; i < listOfAvailableBooks.size(); i++) {
-            if (bookToCheckOutIsAvailable(i, bookToCheckout)) {
-                isAvailable = true;
-                listOfAvailableBooks.remove(i);
-                System.out.println("Thank you! Enjoy the book");
-                break;
-            } else {
-                isAvailable = false;
-            }
-        }
-
-        if(isAvailable == false) {
-            System.out.println("Sorry, that book is not available");
-        }
-
-        displayMenu();
-    }
-
-    public boolean bookToCheckOutIsAvailable(int index, String bookToCheckout) {
-        return listOfAvailableBooks.get(index).getTitle().equalsIgnoreCase(bookToCheckout);
-    }
-
     public void returnBook() {
         System.out.println("Please enter the title of the book you wish to return.");
         String bookToReturn = getUserInput();

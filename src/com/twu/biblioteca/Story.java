@@ -2,7 +2,7 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-import static com.twu.biblioteca.BibliotecaApp.getUserInput;
+import static com.twu.biblioteca.BibliotecaApp.*;
 
 public class Story {
 
@@ -56,6 +56,33 @@ public class Story {
         }
 
         return story;
+    }
+
+    public void checkoutStory() {
+        boolean isAvailable = true;
+        System.out.println("Please enter the title you wish to checkout.");
+        String storyToCheckout = getUserInput();
+
+        for (int i = 0; i < listOfAvailableBooks.size(); i++) {
+            if (storyToCheckOutIsAvailable(i, storyToCheckout)) {
+                isAvailable = true;
+                listOfAvailableBooks.remove(i);
+                System.out.println("Thank you! Enjoy!");
+                break;
+            } else {
+                isAvailable = false;
+            }
+        }
+
+        if(isAvailable == false) {
+            System.out.println("Sorry, that title is not available");
+        }
+
+        displayMenu();
+    }
+
+    public boolean storyToCheckOutIsAvailable(int index, String storyToCheckout) {
+        return listOfAvailableBooks.get(index).getTitle().equalsIgnoreCase(storyToCheckout);
     }
 
 }
