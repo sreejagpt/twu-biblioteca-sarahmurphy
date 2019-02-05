@@ -30,7 +30,7 @@ public class BookTest {
 
         Book book = new Book();
 
-        //assertThat(book.bookToCheckOutIsAvailable(0, "The Agile Samurai"), is(true));
+        //assertThat(book.checkStoryIsAvailable("The Agile Samurai", listOfAvailableBooks), is(true));
 
     }
 }

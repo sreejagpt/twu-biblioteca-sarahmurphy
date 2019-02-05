@@ -6,11 +6,11 @@ import static com.twu.biblioteca.BibliotecaApp.*;
 
 public class Story {
 
-    public String title;
-    public int year;
-    public String author;
-    public String director;
-    public int rating;
+    protected String title;
+    protected int year;
+    protected String author;
+    protected String director;
+    protected int rating;
 
     public Story() {
 
@@ -19,6 +19,24 @@ public class Story {
     public String getTitle() {
         return title;
     }
+
+    public int getYear() {
+        return year;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+
 
     public void printList(ArrayList<? extends Story> list) {
         System.out.println("Here is a list of available books in the library:");
@@ -31,12 +49,12 @@ public class Story {
         String story = "";
 
         if(list.get(index) instanceof Book) {
-            story = "Title: " + ((Book) list.get(index)).title + " | Author: " + ((Book) list.get(index)).author +
-                    " | Published: " + ((Book) list.get(index)).year;
+            story = "Title: " + list.get(index).getTitle() + " | Author: " + list.get(index).getAuthor() +
+                    " | Published: " + list.get(index).getYear();
         }
         if(list.get(index) instanceof Movie) {
-            story = "Title: " + ((Movie) list.get(index)).title + " | Year: " + ((Movie) list.get(index)).year +
-                    " | Director: " + ((Movie) list.get(index)).director + " | Rating: " + ((Movie) list.get(index)).rating;
+            story = "Title: " + list.get(index).getTitle() + " | Year: " + list.get(index).getYear() +
+                    " | Director: " + list.get(index).getDirector() + " | Rating: " + list.get(index).getRating();
         }
 
         return story;
