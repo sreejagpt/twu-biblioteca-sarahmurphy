@@ -33,7 +33,7 @@ public class Menu {
     public void makeMenuChoice(String menuChoice) {
         if (menuChoice.equals("1")) {
             Book printBookList = new Book();
-            printBookList.printListOfBooks(listOfAvailableBooks);
+            printBookList.printList(listOfAvailableBooks);
             return;
         }
         if (menuChoice.equals("2")) {
@@ -48,7 +48,7 @@ public class Menu {
         }
         if (menuChoice.equals("4")) {
             Movie printMovieList = new Movie();
-            printMovieList.printListOfMovies(listOfAvailableMovies);
+            printMovieList.printList(listOfAvailableMovies);
             return;
         }
         if (menuChoice.equals("5")) {

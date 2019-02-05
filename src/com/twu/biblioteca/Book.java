@@ -4,56 +4,14 @@ import java.util.ArrayList;
 
 import static com.twu.biblioteca.BibliotecaApp.*;
 
-public class Book {
+public class Book extends Story {
 
-    public String title;
-    public String author;
-    public int year;
-
-    public Book() {
-
-    }
+    public Book() {}
 
     public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
         this.year = year;
-    }
-
-    public String getBook() {
-        return "Title: " + title + " | Author: " + author + " | Published: " + year;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void displayMenu() {
-        Menu menu = new Menu();
-        ArrayList<String> menuOptions = menu.getMenu();
-
-        System.out.println("\n Menu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
-        for (String s : menuOptions) {
-            System.out.println(s);
-        }
-
-        String menuChoice = getUserInput();
-
-        menu.makeMenuChoice(menuChoice);
-    }
-
-    public void printListOfBooks(ArrayList<Book> listOfBooks) {
-        System.out.println("Here is a list of available books in the library:");
-        for (int i = 0; i < listOfBooks.size(); i++) {
-            System.out.println(printBook(listOfBooks, i));
-        }
-
-        displayMenu();
-    }
-
-    public String printBook(ArrayList<Book> listOfBooks, int index) {
-        String book = listOfBooks.get(index).getBook();
-        return book;
     }
 
     public void checkoutBook() {
@@ -103,9 +61,9 @@ public class Book {
         isCheckedOut = checkBookIsCheckedOut(book);
 
         if(doesBelong == true && isCheckedOut == true) {
-            for(Book b1 : listOfLibraryBooks) {
-                if(b1.getTitle().equalsIgnoreCase(book)) {
-                    listOfAvailableBooks.add(b1);
+            for(Book b : listOfLibraryBooks) {
+                if(b.getTitle().equalsIgnoreCase(book)) {
+                    listOfAvailableBooks.add(b);
                 }
             }
             System.out.println("Thank you for returning the book.");
@@ -119,8 +77,8 @@ public class Book {
         BookList bookList = new BookList();
         ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
 
-        for(Book b1 : listOfLibraryBooks) {
-            if(b1.getTitle().equalsIgnoreCase(book)) {
+        for(Story s : listOfLibraryBooks) {
+            if(s.getTitle().equalsIgnoreCase(book)) {
                 return true;
             }
         }
@@ -130,8 +88,8 @@ public class Book {
     public boolean checkBookIsCheckedOut(String book) {
         ArrayList<String> listOfAvailableBookTitles = new ArrayList<>();
 
-        for(Book b : listOfAvailableBooks) {
-            listOfAvailableBookTitles.add(b.getTitle().toLowerCase());
+        for(Story s : listOfAvailableBooks) {
+            listOfAvailableBookTitles.add(s.getTitle().toLowerCase());
         }
 
         if(listOfAvailableBookTitles.contains(book.toLowerCase())) {

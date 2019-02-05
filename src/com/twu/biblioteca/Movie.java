@@ -4,40 +4,15 @@ import java.util.ArrayList;
 
 import static com.twu.biblioteca.BibliotecaApp.*;
 
-public class Movie {
+public class Movie extends Story {
 
-    public String name;
-    public int year;
-    public String director;
-    public int rating;
+    public Movie() {}
 
-    public Movie() {
-
-    }
-
-    public Movie(String name, int year, String director, int rating) {
-        this.name = name;
+    public Movie(String title, int year, String director, int rating) {
+        this.title = title;
         this.year = year;
         this.director = director;
         this.rating = rating;
-    }
-
-    public String getMovie() {
-        return "Name: " + name + " | Year: " + year + " | Director: " + director + " | Rating: " + rating;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void printListOfMovies(ArrayList<Movie> listOfMovies) {
-        System.out.println("Here is a list of available movies in the library:");
-        for (int i = 0; i < listOfMovies.size(); i++) {
-            System.out.println(listOfMovies.get(i).getMovie());
-        }
-
-        Book book = new Book();
-        book.displayMenu();
     }
 
     public void checkoutMovie() {
@@ -46,7 +21,7 @@ public class Movie {
         String movieToCheckout = getUserInput();
 
         for (int i = 0; i < listOfAvailableMovies.size(); i++) {
-            if (listOfAvailableMovies.get(i).getName().equalsIgnoreCase(movieToCheckout)) {
+            if (listOfAvailableMovies.get(i).getTitle().equalsIgnoreCase(movieToCheckout)) {
                 isAvailable = true;
                 listOfAvailableMovies.remove(i);
                 System.out.println("Thank you! Enjoy the movie");
@@ -60,7 +35,7 @@ public class Movie {
             System.out.println("Sorry, that movie is not available");
         }
 
-        Book book = new Book();
-        book.displayMenu();
+        Story story = new Story();
+        story.displayMenu();
     }
 }
