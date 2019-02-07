@@ -97,7 +97,8 @@ public class Book extends Story {
         listOfAvailableBooks.remove(1);
 
         if(!listOfLibraryBooks.equals(listOfAvailableBooks)) {
-            //get list here
+            checkedOutBooks = listOfLibraryBooks;
+            checkedOutBooks.removeAll(listOfAvailableBooks);
         }
         return checkedOutBooks;
     }
