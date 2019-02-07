@@ -14,6 +14,11 @@ public class Book extends Story {
         this.year = year;
     }
 
+    public String getBook() {
+        return "Title: " + getTitle() + " | Author: " + getAuthor() +
+                " | Published: " + getYear();
+    }
+
     public void returnBook() {
         System.out.println("Please enter the title of the book you wish to return.");
         String bookToReturn = getUserInput();
@@ -89,7 +94,11 @@ public class Book extends Story {
         BookList bookList = new BookList();
         ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
 
-        //get list here
+        listOfAvailableBooks.remove(1);
+
+        if(!listOfLibraryBooks.equals(listOfAvailableBooks)) {
+            //get list here
+        }
         return checkedOutBooks;
     }
 
