@@ -2,9 +2,9 @@ package com.twu.biblioteca;
 
 import java.util.ArrayList;
 
-public class BookList {
+public class Library {
 
-    public ArrayList<Book> getListOfBooks() {
+    public static ArrayList<Book> getListOfBooks() {
         ArrayList<Book> listOfBooks = new ArrayList<>();
         listOfBooks.add(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
         listOfBooks.add(new Book("Test-Driven Development By Example", "Kent Beck", 2003));
@@ -12,4 +12,22 @@ public class BookList {
         listOfBooks.add(new Book("Don’t Make Me Think Revisited", "Steve Krug", 2014));
         return listOfBooks;
     }
+
+    private ArrayList<Book> bookDatabase() {
+        return getListOfBooks();
+    }
+
+    public static ArrayList<Book> bookshelf() {
+        return getListOfBooks();
+    }
+
+    public void addBookToShelf(Book book) {
+        bookshelf().add(book);
+    }
+
+
+
+    //bookDatabase (all in/out)
+    //bookShelf (available)
+    //booksCheckedOut
 }

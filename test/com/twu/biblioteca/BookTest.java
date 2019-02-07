@@ -2,7 +2,6 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static com.twu.biblioteca.BibliotecaApp.listOfAvailableBooks;
@@ -11,11 +10,11 @@ import static org.junit.Assert.*;
 
 public class BookTest {
 
-    BookList bookList = new BookList();
+    Library library = new Library();
 
     @Test
     public void shouldPrintListOfBooks() {
-        ArrayList<Book> listOfBooks = bookList.getListOfBooks();
+        ArrayList<Book> listOfBooks = library.getListOfBooks();
 
         Book book = new Book();
 
@@ -26,7 +25,7 @@ public class BookTest {
 
     @Test
     public void shouldCheckIfBookToCheckOutIsAvailable() {
-        listOfAvailableBooks = bookList.getListOfBooks();
+        listOfAvailableBooks = library.getListOfBooks();
 
         Book book = new Book();
 

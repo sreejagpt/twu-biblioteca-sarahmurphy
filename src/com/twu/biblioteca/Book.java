@@ -41,8 +41,8 @@ public class Book extends Story {
     }
 
     public void returnBookToLibrary(String book) {
-        BookList bookList = new BookList();
-        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+        Library library = new Library();
+        ArrayList<Book> listOfLibraryBooks = library.getListOfBooks();
 
         // Gets all details of book to add back to library list
         for(Book b : listOfLibraryBooks) {
@@ -55,8 +55,8 @@ public class Book extends Story {
     }
 
     public boolean checkBookBelongs(String book) {
-        BookList bookList = new BookList();
-        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+        Library library = new Library();
+        ArrayList<Book> listOfLibraryBooks = library.getListOfBooks();
 
         for(Story s : listOfLibraryBooks) {
             if(s.getTitle().equalsIgnoreCase(book)) {
@@ -91,14 +91,15 @@ public class Book extends Story {
     }
 
     public ArrayList<Book> getCheckedOutBooks(ArrayList<Book> checkedOutBooks) {
-        BookList bookList = new BookList();
-        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+        Library library = new Library();
+        ArrayList<Book> listOfLibraryBooks = library.getListOfBooks();
 
         listOfAvailableBooks.remove(1);
 
         if(!listOfLibraryBooks.equals(listOfAvailableBooks)) {
-            checkedOutBooks = listOfLibraryBooks;
-            checkedOutBooks.removeAll(listOfAvailableBooks);
+            //checkedOutBooks = listOfLibraryBooks;
+            //checkedOutBooks.removeAll(listOfAvailableBooks);
+            //rework with hidden list from Library()
         }
         return checkedOutBooks;
     }
