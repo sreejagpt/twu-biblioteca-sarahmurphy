@@ -8,12 +8,28 @@ public class Menu {
 
     public ArrayList<String> getMenu() {
         ArrayList<String> menuOptions = new ArrayList<>();
-        menuOptions.add("1. View List of Books");
-        menuOptions.add("2. Checkout a Book");
-        menuOptions.add("3. Return a Book");
-        menuOptions.add("4. View List of Movies");
-        menuOptions.add("5. Checkout a Movie");
+
+        if(user.getUsername() == null) {
+            menuOptions.add("1. View List of Books");
+            menuOptions.add("2. View List of Movies");
+            menuOptions.add("3. Login");
+        } else if (user.getAccountType().equals("customer")) {
+            addMenuOptions(menuOptions);
+            menuOptions.add("6. View My Details");
+        } else if (user.getAccountType().equals("librarian")) {
+            addMenuOptions(menuOptions);
+            menuOptions.add("6. View Checked Out Books");
+        }
+
         return menuOptions;
+    }
+
+    public void addMenuOptions(ArrayList<String> menuOptions) {
+        menuOptions.add("1. View List of Books");
+        menuOptions.add("2. View List of Movies");
+        menuOptions.add("3. Checkout a Book");
+        menuOptions.add("4. Checkout a Movie");
+        menuOptions.add("5. Return a Book");
     }
 
     public void displayMenu() {
@@ -38,23 +54,35 @@ public class Menu {
             return;
         }
         if (menuChoice.equals("2")) {
-            Story checkoutBook = new Story();
-            checkoutBook.checkoutStory(listOfAvailableBooks);
-            return;
-        }
-        if (menuChoice.equals("3")) {
-            Book returnBook = new Book();
-            returnBook.returnBook();
-            return;
-        }
-        if (menuChoice.equals("4")) {
             Movie printMovieList = new Movie();
             printMovieList.printList(listOfAvailableMovies);
             return;
         }
-        if (menuChoice.equals("5")) {
+        if (menuChoice.equals("3")) {
+            if(user.getUsername() == null) {
+                login();
+                return;
+            } else{
+                new Story().checkoutStory(listOfAvailableBooks);
+                return;
+            }
+        }
+        if (menuChoice.equals("4")) {
             Movie checkoutMovie = new Movie();
             checkoutMovie.checkoutStory(listOfAvailableMovies);
+            return;
+        }
+        if (menuChoice.equals("5")) {
+            Book returnBook = new Book();
+            returnBook.returnBook();
+            return;
+        }
+        if (menuChoice.equals("6")) {
+            if(user.getAccountType().equals("customer")) {
+                //viewMyDetails();
+            } else if(user.getAccountType().equals("librarian")) {
+                //viewCheckedOutBooks();
+            }
             return;
         }
         if (menuChoice.equalsIgnoreCase("quit")) {
@@ -63,6 +91,22 @@ public class Menu {
             System.out.println("Please select a valid option! (Enter the item number)");
             String newChoice = getUserInput();
             makeMenuChoice(newChoice);
+        }
+    }
+
+    public void login() {
+        System.out.println("Enter your Username: ");
+        String username = getUserInput();
+
+        System.out.println("Enter your password: ");
+        String password = getUserInput();
+
+        user = user.login(username, password);
+
+        if(user.getUsername() != null) {
+            System.out.println("Welcome " + user.getName());
+        } else {
+            System.out.println("That login is invalid");
         }
     }
 
