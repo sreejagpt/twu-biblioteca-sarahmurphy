@@ -74,4 +74,33 @@ public class Book extends Story {
             return true;
         }
     }
+
+    public void viewCheckedOutBooks() {
+
+        ArrayList<Book> checkedOutBooks = new ArrayList<>();
+
+        checkedOutBooks = getCheckedOutBooks(checkedOutBooks);
+
+        printCheckedOutBooks(checkedOutBooks);
+
+    }
+
+    public ArrayList<Book> getCheckedOutBooks(ArrayList<Book> checkedOutBooks) {
+        BookList bookList = new BookList();
+        ArrayList<Book> listOfLibraryBooks = bookList.getListOfBooks();
+
+        //get list here
+        return checkedOutBooks;
+    }
+
+    public void printCheckedOutBooks(ArrayList<Book> checkedOutBooks) {
+        if(!checkedOutBooks.isEmpty()) {
+            System.out.println("Checked Out Books:");
+            printList(checkedOutBooks);
+        } else {
+            System.out.println("No books are checked out");
+        }
+    }
+
+
 }

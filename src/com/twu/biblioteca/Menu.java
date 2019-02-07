@@ -79,9 +79,9 @@ public class Menu {
         }
         if (menuChoice.equals("6")) {
             if(user.getAccountType().equals("customer")) {
-                //viewMyDetails();
+                user.viewMyDetails(user);
             } else if(user.getAccountType().equals("librarian")) {
-                //viewCheckedOutBooks();
+                new Book().viewCheckedOutBooks();
             }
             return;
         }

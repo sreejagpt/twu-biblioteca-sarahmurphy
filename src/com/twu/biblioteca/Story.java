@@ -39,7 +39,6 @@ public class Story {
 
 
     public void printList(ArrayList<? extends Story> list) {
-        System.out.println("Here is a list of available books in the library:");
         for (int i = 0; i < list.size(); i++) {
             System.out.println(printStory(list, i));
         }

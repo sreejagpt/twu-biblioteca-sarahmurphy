@@ -55,6 +55,14 @@ public class User {
         return accountType;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
     public User login(String username, String password) {
         if (username.equals("123-4567") && password.equals("password123")) {
             return createCustomer();
@@ -62,6 +70,12 @@ public class User {
             return createLibrarian();
         }
         return new User();
+    }
+
+    public void viewMyDetails(User user) {
+        System.out.println("Name: " + user.getName());
+        System.out.println("Email: " + user.getEmail());
+        System.out.println("Address: " + user.getAddress());
     }
 
 
