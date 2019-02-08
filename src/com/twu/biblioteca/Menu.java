@@ -16,9 +16,11 @@ public class Menu {
         } else if (user.getAccountType().equals("customer")) {
             addMenuOptions(menuOptions);
             menuOptions.add("6. View My Details");
+            menuOptions.add("7. Logout");
         } else if (user.getAccountType().equals("librarian")) {
             addMenuOptions(menuOptions);
             menuOptions.add("6. View Checked Out Books");
+            menuOptions.add("7. Logout");
         }
 
         return menuOptions;
@@ -73,15 +75,20 @@ public class Menu {
         }
         if (menuChoice.equals("5")) {
             Book returnBook = new Book();
-            returnBook.returnBook();
+            returnBook.returnBook(bookshelf);
             return;
         }
         if (menuChoice.equals("6")) {
             if(user.getAccountType().equals("customer")) {
-                user.viewMyDetails(user);
+                user.viewMyDetails();
             } else if(user.getAccountType().equals("librarian")) {
-                new Book().viewCheckedOutBooks();
+                new Book().viewCheckedOutBooks(bookshelf);
             }
+            return;
+        }
+        if (menuChoice.equals("7")) {
+            System.out.println("Goodbye");
+            user = new User();
             return;
         }
         if (menuChoice.equalsIgnoreCase("quit")) {

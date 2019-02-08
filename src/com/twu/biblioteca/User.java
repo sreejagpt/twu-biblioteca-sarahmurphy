@@ -72,10 +72,10 @@ public class User {
         return new User();
     }
 
-    public void viewMyDetails(User user) {
-        System.out.println("Name: " + user.getName());
-        System.out.println("Email: " + user.getEmail());
-        System.out.println("Address: " + user.getAddress());
+    public void viewMyDetails() {
+        System.out.println(this.getName());
+        System.out.println(this.getEmail());
+        System.out.println(this.getAddress());
     }
 
 

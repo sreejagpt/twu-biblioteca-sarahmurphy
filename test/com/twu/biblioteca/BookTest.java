@@ -49,4 +49,11 @@ public class BookTest {
         book.returnItem();
         assertThat(book.isAvailable(), is(true));
     }
+
+    @Test
+    public void shouldCheckIfBookIsCheckedOut() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        book.checkout();
+        assertThat(book.isAvailable(), is(false));
+    }
 }

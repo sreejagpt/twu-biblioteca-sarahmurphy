@@ -20,105 +20,39 @@ public class Book extends Story {
                 " | Published: " + getYear();
     }
 
-    public void returnBook() {
+    public void returnBook(ArrayList<Book> bookshelf) {
         System.out.println("Please enter the title of the book you wish to return.");
-        String bookToReturn = getUserInput();
+        String book = getUserInput();
 
-        checkBookBelongsToLibrary(bookToReturn);
+        Library library = new Library();
+        ArrayList<Book> list = library.createBookshelf();
+
+        for(Book b : list) {
+            if(b.getTitle().equalsIgnoreCase(book)) {
+                for(Book c : bookshelf) {
+                    if(c.getTitle().equalsIgnoreCase(book)) {
+                        c.returnItem();
+                    }
+                }
+            }
+        }
     }
 
     public void returnItem() {
         if(!this.isAvailable()) {
             this.isAvailable = true;
-        }
-    }
-
-
-
-    public void checkBookBelongsToLibrary(String book) {
-        boolean doesBelong;
-        boolean isCheckedOut;
-
-        doesBelong = checkBookBelongs(book);
-        isCheckedOut = checkBookIsCheckedOut(book);
-
-        if(doesBelong && isCheckedOut) {
-            returnBookToLibrary(book);
+            System.out.println("Thank you for returning the book.");
         } else {
             System.out.println("That is not a valid book to return.");
         }
     }
 
-    public void returnBookToLibrary(String book) {
-        Library library = new Library();
-        ArrayList<Book> listOfLibraryBooks = library.getListOfBooks();
-
-        // Gets all details of book to add back to library list
-        for(Book b : listOfLibraryBooks) {
-            if(b.getTitle().equalsIgnoreCase(book)) {
-                listOfAvailableBooks.add(b);
+    public void viewCheckedOutBooks(ArrayList<Book> bookshelf) {
+        for(int i = 0; i < bookshelf.size(); i++) {
+            Book book = bookshelf.get(i);
+            if(!book.isAvailable()) {
+                System.out.println(book.getBook());
             }
-        }
-        System.out.println("Thank you for returning the book.");
-
-    }
-
-    public boolean checkBookBelongs(String book) {
-        Library library = new Library();
-        ArrayList<Book> listOfLibraryBooks = library.getListOfBooks();
-
-        for(Story s : listOfLibraryBooks) {
-            if(s.getTitle().equalsIgnoreCase(book)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean checkBookIsCheckedOut(String book) {
-        ArrayList<String> listOfAvailableBookTitles = new ArrayList<>();
-
-        for(Story s : listOfAvailableBooks) {
-            listOfAvailableBookTitles.add(s.getTitle().toLowerCase());
-        }
-
-        if(listOfAvailableBookTitles.contains(book.toLowerCase())) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public void viewCheckedOutBooks() {
-
-        ArrayList<Book> checkedOutBooks = new ArrayList<>();
-
-        checkedOutBooks = getCheckedOutBooks(checkedOutBooks);
-
-        printCheckedOutBooks(checkedOutBooks);
-
-    }
-
-    public ArrayList<Book> getCheckedOutBooks(ArrayList<Book> checkedOutBooks) {
-        Library library = new Library();
-        ArrayList<Book> listOfLibraryBooks = library.getListOfBooks();
-
-        listOfAvailableBooks.remove(1);
-
-        if(!listOfLibraryBooks.equals(listOfAvailableBooks)) {
-            //checkedOutBooks = listOfLibraryBooks;
-            //checkedOutBooks.removeAll(listOfAvailableBooks);
-            //rework with hidden list from Library()
-        }
-        return checkedOutBooks;
-    }
-
-    public void printCheckedOutBooks(ArrayList<Book> checkedOutBooks) {
-        if(!checkedOutBooks.isEmpty()) {
-            System.out.println("Checked Out Books:");
-            printList(checkedOutBooks);
-        } else {
-            System.out.println("No books are checked out");
         }
     }
 
