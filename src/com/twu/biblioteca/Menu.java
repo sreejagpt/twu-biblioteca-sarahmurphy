@@ -68,8 +68,7 @@ public class Menu {
             }
         }
         if (menuChoice.equals("4")) {
-            Movie checkoutMovie = new Movie();
-            checkoutMovie.checkoutStory(movieshelf);
+            new Story().checkoutStory(movieshelf);
             return;
         }
         if (menuChoice.equals("5")) {

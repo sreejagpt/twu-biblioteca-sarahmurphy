@@ -63,37 +63,14 @@ public class Story {
 
     public void checkoutStory(ArrayList<? extends Story> list) {
         System.out.println("Please enter the title you wish to checkout.");
-        checkout();
-
-        //checkStoryIsAvailable(storyToCheckout, list);
-    }
-
-    public void checkStoryIsAvailable(String storyToCheckout, ArrayList<? extends Story> list) {
-        boolean isAvailable = true;
+        String storyToCheckout = getUserInput();
 
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getTitle().equalsIgnoreCase(storyToCheckout)) {
-                isAvailable = true;
-                checkoutOutStory(i, list);
+                list.get(i).checkout();
                 break;
-            } else {
-                isAvailable = false;
             }
         }
-
-        if(!isAvailable) {
-            printUnavailableMessage();
-        }
-
-    }
-
-    public void checkoutOutStory(int index, ArrayList<? extends Story> list) {
-        list.remove(index);
-        System.out.println("Thank you! Enjoy!");
-    }
-
-    public void printUnavailableMessage() {
-        System.out.println("Sorry, that title is not available");
     }
 
     public boolean isAvailable() {
@@ -103,6 +80,9 @@ public class Story {
     public void checkout() {
         if(this.isAvailable) {
             this.isAvailable = false;
+            System.out.println("Thank you! Enjoy!");
+        } else {
+            System.out.println("Sorry, that title is not available");
         }
     }
 
