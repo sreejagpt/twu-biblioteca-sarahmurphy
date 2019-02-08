@@ -8,6 +8,7 @@ public class Story {
 
     protected String title;
     protected int year;
+    protected boolean isAvailable;
     protected String author;
     protected String director;
     protected int rating;

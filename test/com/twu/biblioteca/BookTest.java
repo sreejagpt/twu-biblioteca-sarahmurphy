@@ -2,46 +2,51 @@ package com.twu.biblioteca;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-import static com.twu.biblioteca.BibliotecaApp.listOfAvailableBooks;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class BookTest {
+    @Test
+    public void shouldHaveTitleAuthorAndYear() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        assertThat(book.getBook(), is("Title: This is a title | Author: This is the author | Published: 1991"));
+    }
 
-    Library library = new Library();
+    //think about what you can do with a book, write little one liner tests ^ to 1) fail first, 2) go green next 3) refactor
 
     @Test
-    public void shouldPrintListOfBooks() {
-        ArrayList<Book> listOfBooks = library.getListOfBooks();
-
-        Book book = new Book();
-
-        for(int i = 0; i < listOfBooks.size(); i++) {
-            //assertThat(book.printStory(listOfBooks, i), is(listOfBooks.get(i).getBook()));
-        }
+    public void shouldBeAvailableToCheckoutAtTimeOfCreation() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        assertThat(book.isAvailable(), is(true));
     }
 
     @Test
-    public void shouldCheckIfBookToCheckOutIsAvailable() {
-        listOfAvailableBooks = library.getListOfBooks();
-
-        Book book = new Book();
-
-        //assertThat(book.checkStoryIsAvailable("The Agile Samurai", listOfAvailableBooks), is(true));
-
+    public void shouldBeAbleToCheckoutBook() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        book.checkout();
+        assertThat(book.isAvailable(), is(false));
     }
 
-    @ Test
-    public void shouldCheckIfBookBelongsToLibrary() {
-        Book book = new Book();
-        assertThat(book.checkBookBelongs("Head First Java"), is(true));
+    @Test
+    public void shouldNotBeAbleToCheckOutAnAlreadyCheckedOutBook() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        book.checkout();
+        book.checkout();
+        assertThat(book.isAvailable(), is(false));
     }
 
-    @ Test
-    public void shouldCheckIfBookIsCheckedOut() {
-        Book book = new Book();
-        assertThat(book.checkBookIsCheckedOut("Checked Out Book"), is(true));
+    @Test
+    public void shouldBeAbleToReturnACheckedOutBook() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        book.checkout();
+        book.returnBook();
+        assertThat(book.isAvailable(), is(true));
+    }
+
+    @Test
+    public void shouldNotBeAbleToReturnACheckedInBook() {
+        Book book = new Book("This is a title", "This is the author", 1991);
+        book.returnBook();
+        assertThat(book.isAvailable(), is(true));
     }
 }
