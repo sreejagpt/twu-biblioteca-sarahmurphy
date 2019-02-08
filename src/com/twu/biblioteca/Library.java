@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Library {
 
-    public static ArrayList<Book> getListOfBooks() {
+    public ArrayList<Book> getListOfBooks() {
         ArrayList<Book> listOfBooks = new ArrayList<>();
         listOfBooks.add(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
         listOfBooks.add(new Book("Test-Driven Development By Example", "Kent Beck", 2003));
@@ -13,16 +13,36 @@ public class Library {
         return listOfBooks;
     }
 
-    private ArrayList<Book> bookDatabase() {
+    public ArrayList<Movie> getListOfMovies() {
+        ArrayList<Movie> listOfMovies = new ArrayList<>();
+        listOfMovies.add(new Movie("First Man", 2018, "Damien Chazelle", 7));
+        listOfMovies.add(new Movie("Rush", 2013, "Ron Howard", 8));
+        listOfMovies.add(new Movie("After Earth", 2013, "M. Night Shyamalan", 4));
+        listOfMovies.add(new Movie("Shrek", 2001, "Andrew Adamson & Vicky Jenson", 8));
+        return listOfMovies;
+    }
+
+    public ArrayList<Book> bookshelf() {
         return getListOfBooks();
     }
 
-    public static ArrayList<Book> bookshelf() {
-        return getListOfBooks();
+    public ArrayList<Movie> movieshelf() {
+        return getListOfMovies();
     }
 
-    public void addBookToShelf(Book book) {
-        bookshelf().add(book);
+    public void getAllBooks() {
+        for(Book book : bookshelf()) {
+            book.getBook();
+        }
+    }
+
+    public void getAvailableBooks() {
+        //if book.available
+        for (Book book : bookshelf()) {
+            if(book.isAvailable()) {
+                book.getBook();
+            }
+        }
     }
 
 

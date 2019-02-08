@@ -9,5 +9,6 @@ public class Movie extends Story {
         this.year = year;
         this.director = director;
         this.rating = rating;
+        this.isAvailable = true;
     }
 }

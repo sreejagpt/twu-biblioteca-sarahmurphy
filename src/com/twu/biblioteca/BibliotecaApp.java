@@ -15,7 +15,7 @@ public class BibliotecaApp {
         Library listOfBooks = new Library();
         listOfAvailableBooks = listOfBooks.getListOfBooks();
 
-        MovieList listOfMovies = new MovieList();
+        Library listOfMovies = new Library();
         listOfAvailableMovies = listOfMovies.getListOfMovies();
 
         User user = new User();

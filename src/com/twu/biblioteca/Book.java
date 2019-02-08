@@ -20,13 +20,13 @@ public class Book extends Story {
                 " | Published: " + getYear();
     }
 
-//    public void returnBook() {
-//        System.out.println("Please enter the title of the book you wish to return.");
-//        String bookToReturn = getUserInput();
-//
-//        checkBookBelongsToLibrary(bookToReturn);
-//    }
-//
+    public void returnBook() {
+        System.out.println("Please enter the title of the book you wish to return.");
+        String bookToReturn = getUserInput();
+
+        checkBookBelongsToLibrary(bookToReturn);
+    }
+
 
 
     public void checkBookBelongsToLibrary(String book) {
@@ -116,20 +116,4 @@ public class Book extends Story {
         }
     }
 
-
-    public boolean isAvailable() {
-            return this.isAvailable;
-    }
-
-    public void checkout() {
-        if(this.isAvailable) {
-            this.isAvailable = false;
-        }
-    }
-
-    public void returnBook() {
-        if(!this.isAvailable()) {
-            this.isAvailable = true;
-        }
-    }
 }

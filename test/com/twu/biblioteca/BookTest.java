@@ -39,14 +39,14 @@ public class BookTest {
     public void shouldBeAbleToReturnACheckedOutBook() {
         Book book = new Book("This is a title", "This is the author", 1991);
         book.checkout();
-        book.returnBook();
+        book.returnItem();
         assertThat(book.isAvailable(), is(true));
     }
 
     @Test
     public void shouldNotBeAbleToReturnACheckedInBook() {
         Book book = new Book("This is a title", "This is the author", 1991);
-        book.returnBook();
+        book.returnItem();
         assertThat(book.isAvailable(), is(true));
     }
 }

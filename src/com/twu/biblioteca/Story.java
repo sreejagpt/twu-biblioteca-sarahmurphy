@@ -95,4 +95,19 @@ public class Story {
         System.out.println("Sorry, that title is not available");
     }
 
+    public boolean isAvailable() {
+        return this.isAvailable;
+    }
+
+    public void checkout() {
+        if(this.isAvailable) {
+            this.isAvailable = false;
+        }
+    }
+
+    public void returnItem() {
+        if(!this.isAvailable()) {
+            this.isAvailable = true;
+        }
+    }
 }
