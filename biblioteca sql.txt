@@ -1,0 +1,52 @@
+Biblioteca Exercise
+
+1. Who checked out the book 'The Hobbit’?
+
+SELECT name FROM book, checkout_item, member
+WHERE book.id = book_id 
+AND title = 'The Hobbit'
+AND member_id = member.id;
+
+
+2. How many people have not checked out anything?
+
+SELECT
+	(SELECT COUNT(DISTINCT name) AS "Number of people" FROM member)
+  - (SELECT COUNT(DISTINCT member_id) AS "Number of members" FROM checkout_item)
+  AS "People who have not checked out anything";
+  
+3. What books and movies aren't checked out?
+
+SELECT title FROM book
+WHERE book.id NOT IN(
+	SELECT id FROM book, checkout_item
+	where book.id = book_id);
+SELECT title FROM movie
+WHERE movie.id NOT IN(
+	SELECT id FROM movie, checkout_item
+	where movie.id = movie_id
+);
+
+4. Add the book 'The Pragmatic Programmer', and add yourself as a member. Check out 'The Pragmatic Programmer'. Use your query from question 1 to verify that you have checked it out. Also, provide the SQL used to update the database.
+
+INSERT INTO book(id, title)
+VALUES (11, 'The Pragmatic Programmer');
+
+INSERT INTO member(id, name)
+VALUES (43, 'Sarah Murphy');
+
+INSERT INTO checkout_item (member_id, book_id, movie_id)
+VALUES (43, 11, null);
+
+SELECT name FROM book, checkout_item, member
+WHERE book.id = book_id 
+AND title = 'The Pragmatic Programmer'
+AND member_id = member.id;
+
+
+5. Who has checked out more that 1 item? 
+
+SELECT name FROM member, checkout_item
+WHERE member.id = member_id
+GROUP BY member_id
+HAVING count(member_id) > 1
