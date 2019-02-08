@@ -32,7 +32,7 @@ public class Menu {
         menuOptions.add("5. Return a Book");
     }
 
-    public void displayMenu() {
+    public void displayMenu(ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
         Menu menu = new Menu();
         ArrayList<String> menuOptions = menu.getMenu();
 
@@ -43,19 +43,19 @@ public class Menu {
 
         String menuChoice = getUserInput();
 
-        makeMenuChoice(menuChoice);
-        displayMenu();
+        makeMenuChoice(menuChoice, bookshelf, movieshelf);
+        displayMenu(bookshelf, movieshelf);
     }
 
-    public void makeMenuChoice(String menuChoice) {
+    public void makeMenuChoice(String menuChoice, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
         if (menuChoice.equals("1")) {
-            Book printBookList = new Book();
-            printBookList.printList(new Library().bookshelf());
+            Library library = new Library();
+            library.getAvailableBooks(bookshelf);
             return;
         }
         if (menuChoice.equals("2")) {
-            Movie printMovieList = new Movie();
-            printMovieList.printList(new Library().movieshelf());
+            Library library = new Library();
+            library.getAvailableMovies(movieshelf);
             return;
         }
         if (menuChoice.equals("3")) {
@@ -63,13 +63,13 @@ public class Menu {
                 login();
                 return;
             } else{
-                new Story().checkoutStory(listOfAvailableBooks);
+                new Story().checkoutStory(bookshelf);
                 return;
             }
         }
         if (menuChoice.equals("4")) {
             Movie checkoutMovie = new Movie();
-            checkoutMovie.checkoutStory(listOfAvailableMovies);
+            checkoutMovie.checkoutStory(movieshelf);
             return;
         }
         if (menuChoice.equals("5")) {
@@ -90,7 +90,7 @@ public class Menu {
         } else {
             System.out.println("Please select a valid option! (Enter the item number)");
             String newChoice = getUserInput();
-            makeMenuChoice(newChoice);
+            makeMenuChoice(newChoice, bookshelf, movieshelf);
         }
     }
 
@@ -101,7 +101,7 @@ public class Menu {
         System.out.println("Enter your password: ");
         String password = getUserInput();
 
-        user = user.login(username, password);
+        user.login(username, password);
 
         if(user.getUsername() != null) {
             System.out.println("Welcome " + user.getName());

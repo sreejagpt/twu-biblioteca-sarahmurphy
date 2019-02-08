@@ -8,10 +8,6 @@ public class Library {
 
     public Library() {}
 
-    public Library(ArrayList<? extends Story> list) {
-        this.list = list;
-    }
-
     public ArrayList<Book> getListOfBooks() {
         ArrayList<Book> listOfBooks = new ArrayList<>();
         listOfBooks.add(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
@@ -30,32 +26,38 @@ public class Library {
         return listOfMovies;
     }
 
-    public Library createBookshelf() {
-        return new Library(getListOfBooks());
-    }
-
-    public Library createMovieshelf() {
-        return new Library(getListOfMovies());
-    }
-
-    public ArrayList<Book> bookshelf() {
+    public ArrayList<Book> createBookshelf() {
         return getListOfBooks();
     }
 
-    public ArrayList<Movie> movieshelf() {
+    public ArrayList<Movie> createMovieshelf() {
         return getListOfMovies();
     }
 
-    public void getAllBooks() {
-        for(Book book : bookshelf()) {
-            book.getBook();
+    public void getAllBooks(ArrayList<Book> bookshelf) {
+        for(Book book : bookshelf) {
+            System.out.println(book.getBook());
         }
     }
 
-    public void getAvailableBooks() {
-        for (Book book : bookshelf()) {
+    public void getAvailableBooks(ArrayList<Book> bookshelf) {
+        for (Book book : bookshelf) {
             if(book.isAvailable()) {
-                book.getBook();
+                System.out.println(book.getBook());
+            }
+        }
+    }
+
+    public void getAllMovies(ArrayList<Movie> movieshelf) {
+        for(Movie movie : movieshelf) {
+            System.out.println(movie.getMovie());
+        }
+    }
+
+    public void getAvailableMovies(ArrayList<Movie> movieshelf) {
+        for (Movie movie : movieshelf) {
+            if(movie.isAvailable()) {
+                System.out.println(movie.getMovie());
             }
         }
     }

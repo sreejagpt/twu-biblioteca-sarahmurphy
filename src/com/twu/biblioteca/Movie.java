@@ -11,4 +11,9 @@ public class Movie extends Story {
         this.rating = rating;
         this.isAvailable = true;
     }
+
+    public String getMovie() {
+        return "Title: " + getTitle() + " | Year: " + getYear() +
+                " | Director: " + getDirector() + " | Rating: " + getRating();
+    }
 }

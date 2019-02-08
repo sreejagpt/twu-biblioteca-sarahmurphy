@@ -12,7 +12,7 @@ public class StoryTest {
         Library library = new Library();
         Story story = new Story();
 
-        assertThat(story.printStory(library.bookshelf(), 0), is("Title: The Agile Samurai | Author: Jonathon Rasmusson | Published: 2010"));
+        assertThat(story.printStory(library.createBookshelf(), 0), is("Title: The Agile Samurai | Author: Jonathon Rasmusson | Published: 2010"));
     }
 
 
@@ -21,7 +21,7 @@ public class StoryTest {
         Library library = new Library();
         Story story = new Story();
 
-        assertThat(story.printStory(library.movieshelf(), 0), is("Title: First Man | Year: 2018 | Director: Damien Chazelle | Rating: 7"));
+        assertThat(story.printStory(library.createMovieshelf(), 0), is("Title: First Man | Year: 2018 | Director: Damien Chazelle | Rating: 7"));
     }
 
 }
