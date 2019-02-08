@@ -5,12 +5,22 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    public static ArrayList<Book> listOfAvailableBooks = new ArrayList();
-    public static ArrayList<Movie> listOfAvailableMovies = new ArrayList();
+    public static ArrayList<Book> listOfAvailableBooks = new ArrayList<>();
+    public static ArrayList<Movie> listOfAvailableMovies = new ArrayList<>();
+
     public static User user = new User();
 
     public static void main(String[] args) {
+
+
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
+
+
+        Library bookshelf = new Library();
+        bookshelf.createBookshelf();
+
+        Library movieshelf = new Library();
+        movieshelf.createMovieshelf();
 
         Library listOfBooks = new Library();
         listOfAvailableBooks = listOfBooks.getListOfBooks();

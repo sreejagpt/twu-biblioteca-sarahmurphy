@@ -4,6 +4,14 @@ import java.util.ArrayList;
 
 public class Library {
 
+    private ArrayList<? extends Story> list;
+
+    public Library() {}
+
+    public Library(ArrayList<? extends Story> list) {
+        this.list = list;
+    }
+
     public ArrayList<Book> getListOfBooks() {
         ArrayList<Book> listOfBooks = new ArrayList<>();
         listOfBooks.add(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
@@ -22,6 +30,14 @@ public class Library {
         return listOfMovies;
     }
 
+    public Library createBookshelf() {
+        return new Library(getListOfBooks());
+    }
+
+    public Library createMovieshelf() {
+        return new Library(getListOfMovies());
+    }
+
     public ArrayList<Book> bookshelf() {
         return getListOfBooks();
     }
@@ -37,7 +53,6 @@ public class Library {
     }
 
     public void getAvailableBooks() {
-        //if book.available
         for (Book book : bookshelf()) {
             if(book.isAvailable()) {
                 book.getBook();

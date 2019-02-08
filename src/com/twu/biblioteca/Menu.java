@@ -50,12 +50,12 @@ public class Menu {
     public void makeMenuChoice(String menuChoice) {
         if (menuChoice.equals("1")) {
             Book printBookList = new Book();
-            printBookList.printList(listOfAvailableBooks);
+            printBookList.printList(new Library().bookshelf());
             return;
         }
         if (menuChoice.equals("2")) {
             Movie printMovieList = new Movie();
-            printMovieList.printList(listOfAvailableMovies);
+            printMovieList.printList(new Library().movieshelf());
             return;
         }
         if (menuChoice.equals("3")) {

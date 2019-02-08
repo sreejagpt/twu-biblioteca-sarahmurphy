@@ -24,6 +24,4 @@ public class StoryTest {
         assertThat(story.printStory(library.movieshelf(), 0), is("Title: First Man | Year: 2018 | Director: Damien Chazelle | Rating: 7"));
     }
 
-
-
 }
