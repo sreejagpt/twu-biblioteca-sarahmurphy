@@ -16,19 +16,11 @@ public class LibraryTest {
         Library library = new Library();
         //assertThat(library.getListOfBooks(), is());
 
-        //how do I check lists contain same elements
+        //how do I check lists contain same elements?
 
         //assertThat(library.getListOfBooks(), contains(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
 
     }
-
-    @Test
-    public void shouldGetAllBooks() {
-        Library library = new Library();
-        //library.getAllBooks();
-        //assertThat(library.getAllBooks(), is());
-    }
-
 
     @Test
     public void shouldGetAvailableBooks() {

@@ -27,23 +27,19 @@ public class Book extends Story {
         Library library = new Library();
         ArrayList<Book> list = library.createBookshelf();
 
-        for(Book b : list) {
-            if(b.getTitle().equalsIgnoreCase(book)) {
-                for(Book c : bookshelf) {
-                    if(c.getTitle().equalsIgnoreCase(book)) {
-                        c.returnItem();
-                    }
-                }
+        for (Book c : bookshelf) {
+            if (c.getTitle().equalsIgnoreCase(book)) {
+                c.returnItem();
+                System.out.println("Thank you for returning the book.");
+                return;
             }
         }
+            System.out.println("That is not a valid book to return.");
     }
 
     public void returnItem() {
         if(!this.isAvailable()) {
             this.isAvailable = true;
-            System.out.println("Thank you for returning the book.");
-        } else {
-            System.out.println("That is not a valid book to return.");
         }
     }
 

@@ -38,29 +38,6 @@ public class Story {
     }
 
 
-
-    public void printList(ArrayList<? extends Story> list) {
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(printStory(list, i));
-        }
-    }
-
-    public String printStory(ArrayList<? extends Story> list, int index) {
-        String story = "";
-
-            if(list.get(index) instanceof Book) {
-                story = "Title: " + list.get(index).getTitle() + " | Author: " + list.get(index).getAuthor() +
-                        " | Published: " + list.get(index).getYear();
-            }
-            if(list.get(index) instanceof Movie) {
-                story = "Title: " + list.get(index).getTitle() + " | Year: " + list.get(index).getYear() +
-                        " | Director: " + list.get(index).getDirector() + " | Rating: " + list.get(index).getRating();
-            }
-
-
-        return story;
-    }
-
     public void checkoutStory(ArrayList<? extends Story> list) {
         System.out.println("Please enter the title you wish to checkout.");
         String storyToCheckout = getUserInput();
@@ -68,9 +45,11 @@ public class Story {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getTitle().equalsIgnoreCase(storyToCheckout)) {
                 list.get(i).checkout();
-                break;
+                System.out.println("Thank you! Enjoy!");
+                return;
             }
         }
+        System.out.println("Sorry, that title is not available");
     }
 
     public boolean isAvailable() {
@@ -80,11 +59,7 @@ public class Story {
     public void checkout() {
         if(this.isAvailable) {
             this.isAvailable = false;
-            System.out.println("Thank you! Enjoy!");
-        } else {
-            System.out.println("Sorry, that title is not available");
         }
     }
-
 
 }

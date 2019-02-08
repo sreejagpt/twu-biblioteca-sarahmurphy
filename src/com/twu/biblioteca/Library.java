@@ -34,23 +34,11 @@ public class Library {
         return getListOfMovies();
     }
 
-    public void getAllBooks(ArrayList<Book> bookshelf) {
-        for(Book book : bookshelf) {
-            System.out.println(book.getBook());
-        }
-    }
-
     public void getAvailableBooks(ArrayList<Book> bookshelf) {
         for (Book book : bookshelf) {
             if(book.isAvailable()) {
                 System.out.println(book.getBook());
             }
-        }
-    }
-
-    public void getAllMovies(ArrayList<Movie> movieshelf) {
-        for(Movie movie : movieshelf) {
-            System.out.println(movie.getMovie());
         }
     }
 
@@ -61,10 +49,4 @@ public class Library {
             }
         }
     }
-
-
-
-    //bookDatabase (all in/out)
-    //bookShelf (available)
-    //booksCheckedOut
 }

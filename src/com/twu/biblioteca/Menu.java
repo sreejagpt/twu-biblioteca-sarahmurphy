@@ -38,7 +38,7 @@ public class Menu {
         Menu menu = new Menu();
         ArrayList<String> menuOptions = menu.getMenu();
 
-        System.out.println("\n Menu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
+        System.out.println("\nMenu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
         for (String s : menuOptions) {
             System.out.println(s);
         }
