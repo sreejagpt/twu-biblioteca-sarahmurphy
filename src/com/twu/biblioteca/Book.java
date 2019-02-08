@@ -27,6 +27,12 @@ public class Book extends Story {
         checkBookBelongsToLibrary(bookToReturn);
     }
 
+    public void returnItem() {
+        if(!this.isAvailable()) {
+            this.isAvailable = true;
+        }
+    }
+
 
 
     public void checkBookBelongsToLibrary(String book) {

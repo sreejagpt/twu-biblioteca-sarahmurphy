@@ -86,9 +86,5 @@ public class Story {
         }
     }
 
-    public void returnItem() {
-        if(!this.isAvailable()) {
-            this.isAvailable = true;
-        }
-    }
+
 }
