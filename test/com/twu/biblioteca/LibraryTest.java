@@ -1,5 +1,6 @@
 package com.twu.biblioteca;
 
+import com.sun.org.apache.bcel.internal.generic.LUSHR;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,11 +20,6 @@ public class LibraryTest {
         //how do I check lists contain same elements?
 
         //assertThat(library.getListOfBooks(), contains(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
-
-    }
-
-    @Test
-    public void shouldGetAvailableBooks() {
 
     }
 }
