@@ -6,7 +6,7 @@ import static com.twu.biblioteca.BibliotecaApp.*;
 
 public class Menu {
 
-    public ArrayList<String> getMenu() {
+    public ArrayList<String> getMenu(User user) {
         ArrayList<String> menuOptions = new ArrayList<>();
 
         if(user.getUsername() == null) {
@@ -34,9 +34,9 @@ public class Menu {
         menuOptions.add("5. Return a Book");
     }
 
-    public void displayMenu(ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
+    public void displayMenu(User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
         Menu menu = new Menu();
-        ArrayList<String> menuOptions = menu.getMenu();
+        ArrayList<String> menuOptions = menu.getMenu(user);
 
         System.out.println("\nMenu - please select an item from the list below (enter the item number) or type 'quit' to exit the application.");
         for (String s : menuOptions) {
@@ -45,11 +45,11 @@ public class Menu {
 
         String menuChoice = getUserInput();
 
-        makeMenuChoice(menuChoice, bookshelf, movieshelf);
-        displayMenu(bookshelf, movieshelf);
+        makeMenuChoice(menuChoice, user, bookshelf, movieshelf);
+        displayMenu(user, bookshelf, movieshelf);
     }
 
-    public void makeMenuChoice(String menuChoice, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
+    public void makeMenuChoice(String menuChoice, User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
         if (menuChoice.equals("1")) {
             Library library = new Library();
             library.getAvailableBooks(bookshelf);
@@ -62,7 +62,7 @@ public class Menu {
         }
         if (menuChoice.equals("3")) {
             if(user.getUsername() == null) {
-                login();
+                user = login(user);
                 return;
             } else{
                 new Story().checkoutStory(bookshelf);
@@ -88,7 +88,7 @@ public class Menu {
         }
         if (menuChoice.equals("7")) {
             System.out.println("Goodbye");
-            user = new User();
+            user.logout();
             return;
         }
         if (menuChoice.equalsIgnoreCase("quit")) {
@@ -96,11 +96,11 @@ public class Menu {
         } else {
             System.out.println("Please select a valid option! (Enter the item number)");
             String newChoice = getUserInput();
-            makeMenuChoice(newChoice, bookshelf, movieshelf);
+            makeMenuChoice(newChoice, user, bookshelf, movieshelf);
         }
     }
 
-    public void login() {
+    public User login(User user) {
         System.out.println("Enter your Username: ");
         String username = getUserInput();
 
@@ -114,6 +114,7 @@ public class Menu {
         } else {
             System.out.println("That login is invalid");
         }
+        return user;
     }
 
 }

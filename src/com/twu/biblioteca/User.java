@@ -72,6 +72,15 @@ public class User {
         return new User();
     }
 
+    public void logout() {
+        this.username = null;
+        this.password = null;
+        this.accountType = null;
+        this.name = null;
+        this.email = null;
+        this.address = null;
+    }
+
     public void viewMyDetails() {
         System.out.println(this.getName());
         System.out.println(this.getEmail());

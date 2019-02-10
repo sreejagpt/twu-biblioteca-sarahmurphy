@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class BibliotecaApp {
 
-    public static User user = new User();
+    public static User user1 = new User();
 
     public static void main(String[] args) {
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
@@ -14,8 +14,10 @@ public class BibliotecaApp {
         ArrayList<Book> bookshelf = library.createBookshelf();
         ArrayList<Movie> movieshelf = library.createMovieshelf();
 
+        User user = new User();
+
         Menu menu = new Menu();
-        menu.displayMenu(bookshelf, movieshelf);
+        menu.displayMenu(user, bookshelf, movieshelf);
     }
 
     public static String getUserInput() {

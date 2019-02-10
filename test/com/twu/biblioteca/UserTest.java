@@ -42,4 +42,16 @@ public class UserTest {
         assertThat(user.getAccountType(), is ("customer"));
     }
 
+    @Test
+    public void shouldSetUserAttributesToNull() {
+        User user = new User();
+        user.createCustomer();
+        user.logout();
+        assertNull(user.getUsername());
+        assertNull(user.getAccountType());
+        assertNull(user.getName());
+        assertNull(user.getAddress());
+        assertNull(user.getEmail());
+    }
+
 }
