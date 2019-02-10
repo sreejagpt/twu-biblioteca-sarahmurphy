@@ -24,9 +24,6 @@ public class Book extends Story {
         System.out.println("Please enter the title of the book you wish to return.");
         String book = getUserInput();
 
-        Library library = new Library();
-        ArrayList<Book> list = library.createBookshelf();
-
         for (Book c : bookshelf) {
             if (c.getTitle().equalsIgnoreCase(book)) {
                 c.returnItem();
@@ -48,8 +45,10 @@ public class Book extends Story {
             Book book = bookshelf.get(i);
             if(!book.isAvailable()) {
                 System.out.println(book.getBook());
+                return;
             }
         }
+        System.out.println("No books have been checked out");
     }
 
 }
