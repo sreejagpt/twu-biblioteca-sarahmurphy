@@ -22,4 +22,10 @@ public class LibraryTest {
         //assertThat(library.getListOfBooks(), contains(new Book("The Agile Samurai", "Jonathon Rasmusson", 2010));
 
     }
+
+    @Test
+    public void shouldCreateAListOfBooks() {
+        Library library = new Library();
+        //assertThat(library.createBookshelf(), is(library.getListOfBooks()));
+    }
 }

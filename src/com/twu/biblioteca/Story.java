@@ -43,10 +43,13 @@ public class Story {
         String storyToCheckout = getUserInput();
 
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getTitle().equalsIgnoreCase(storyToCheckout)) {
-                list.get(i).checkout();
-                System.out.println("Thank you! Enjoy!");
-                return;
+            Story storyInList = list.get(i);
+            if (storyInList.getTitle().equalsIgnoreCase(storyToCheckout)) {
+                if(storyInList.isAvailable()) {
+                    storyInList.checkout();
+                    System.out.println("Thank you! Enjoy!");
+                    return;
+                }
             }
         }
         System.out.println("Sorry, that title is not available");

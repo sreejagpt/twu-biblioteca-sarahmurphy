@@ -54,4 +54,11 @@ public class UserTest {
         assertNull(user.getEmail());
     }
 
+    @Test
+    public void shouldCheckIfUserIsLoggedIn() {
+        User user = new User();
+        user.login("123-4567", "password123");
+        assertThat(user.isLoggedIn(), is(true));
+    }
+
 }

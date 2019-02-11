@@ -72,6 +72,13 @@ public class User {
         return new User();
     }
 
+    public boolean isLoggedIn() {
+        if(this.getUsername() != null) {
+            return true;
+        }
+        return false;
+    }
+
     public void logout() {
         this.username = null;
         this.password = null;

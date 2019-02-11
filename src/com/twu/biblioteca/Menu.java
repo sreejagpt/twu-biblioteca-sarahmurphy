@@ -50,50 +50,57 @@ public class Menu {
     }
 
     public void makeMenuChoice(String menuChoice, User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
-        if (menuChoice.equals("1")) {
-            new Library().getAvailableBooks(bookshelf);
-            return;
-        }
-        if (menuChoice.equals("2")) {
-            new Library().getAvailableMovies(movieshelf);
-            return;
-        }
-        if (menuChoice.equals("3")) {
-            if(user.getUsername() == null) {
-                user = login(user);
+        switch(menuChoice) {
+            case "1":
+                new Library().getAvailableBooks(bookshelf);
                 return;
-            } else{
-                new Story().checkoutStory(bookshelf);
+            case "2":
+                new Library().getAvailableMovies(movieshelf);
                 return;
-            }
+            case "3":
+                checkLoggedIn(user, bookshelf);
+                return;
+            case "4":
+                new Story().checkoutStory(movieshelf);
+                return;
+            case "5":
+                new Book().returnBook(bookshelf);
+                return;
+            case "6":
+                checkAccountType(user, bookshelf);
+                return;
+            case "7":
+                logout(user);
+                return;
+            case "quit":
+                quitProgram();
+                return;
+            default:
+                menuChoiceErrorMessage(user, bookshelf, movieshelf);
         }
-        if (menuChoice.equals("4")) {
-            new Story().checkoutStory(movieshelf);
-            return;
-        }
-        if (menuChoice.equals("5")) {
-            new Book().returnBook(bookshelf);
-            return;
-        }
-        if (menuChoice.equals("6")) {
-            if(user.getAccountType().equals("customer")) {
-                user.viewMyDetails();
-            } else if(user.getAccountType().equals("librarian")) {
-                new Book().viewCheckedOutBooks(bookshelf);
-            }
-            return;
-        }
-        if (menuChoice.equals("7")) {
-            System.out.println("Goodbye");
-            user.logout();
-            return;
-        }
-        if (menuChoice.equalsIgnoreCase("quit")) {
-            System.exit(0);
+    }
+
+    public void menuChoiceErrorMessage(User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
+        System.out.println("Please select a valid option! (Enter the item number)");
+        String newChoice = getUserInput();
+        makeMenuChoice(newChoice, user, bookshelf, movieshelf);
+    }
+
+    public User checkLoggedIn(User user, ArrayList<Book> bookshelf) {
+        if(!user.isLoggedIn()) {
+            user = login(user);
+            return user;
         } else {
-            System.out.println("Please select a valid option! (Enter the item number)");
-            String newChoice = getUserInput();
-            makeMenuChoice(newChoice, user, bookshelf, movieshelf);
+            new Story().checkoutStory(bookshelf);
+        }
+        return user;
+    }
+
+    public void checkAccountType(User user, ArrayList<Book> bookshelf) {
+        if(user.getAccountType().equals("customer")) {
+            user.viewMyDetails();
+        } else if(user.getAccountType().equals("librarian")) {
+            new Book().viewCheckedOutBooks(bookshelf);
         }
     }
 
@@ -118,6 +125,15 @@ public class Menu {
             System.out.println("That login is invalid");
         }
         return user;
+    }
+
+    public void logout(User user) {
+        System.out.println("Goodbye");
+        user.logout();
+    }
+
+    public void quitProgram() {
+        System.exit(0);
     }
 
 }

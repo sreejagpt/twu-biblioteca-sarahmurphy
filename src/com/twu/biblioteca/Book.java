@@ -24,20 +24,20 @@ public class Book extends Story {
         System.out.println("Please enter the title of the book you wish to return.");
         String book = getUserInput();
 
-        for (Book c : bookshelf) {
-            if (c.getTitle().equalsIgnoreCase(book)) {
-                c.returnItem();
-                System.out.println("Thank you for returning the book.");
-                return;
+        for (Book b : bookshelf) {
+            if (b.getTitle().equalsIgnoreCase(book)) {
+                if(!b.isAvailable()) {
+                    b.returnItem();
+                    System.out.println("Thank you for returning the book.");
+                    return;
+                }
             }
         }
             System.out.println("That is not a valid book to return.");
     }
 
     public void returnItem() {
-        if(!this.isAvailable()) {
             this.isAvailable = true;
-        }
     }
 
     public void viewCheckedOutBooks(ArrayList<Book> bookshelf) {
