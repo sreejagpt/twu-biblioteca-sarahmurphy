@@ -109,6 +109,12 @@ public class Menu {
 
         user.login(username, password);
 
+        validateUser(user);
+
+        return user;
+    }
+
+    public User validateUser(User user) {
         if(user.getUsername() != null) {
             System.out.println("Welcome " + user.getName());
         } else {
