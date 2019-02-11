@@ -51,13 +51,11 @@ public class Menu {
 
     public void makeMenuChoice(String menuChoice, User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
         if (menuChoice.equals("1")) {
-            Library library = new Library();
-            library.getAvailableBooks(bookshelf);
+            new Library().getAvailableBooks(bookshelf);
             return;
         }
         if (menuChoice.equals("2")) {
-            Library library = new Library();
-            library.getAvailableMovies(movieshelf);
+            new Library().getAvailableMovies(movieshelf);
             return;
         }
         if (menuChoice.equals("3")) {
@@ -74,8 +72,7 @@ public class Menu {
             return;
         }
         if (menuChoice.equals("5")) {
-            Book returnBook = new Book();
-            returnBook.returnBook(bookshelf);
+            new Book().returnBook(bookshelf);
             return;
         }
         if (menuChoice.equals("6")) {
