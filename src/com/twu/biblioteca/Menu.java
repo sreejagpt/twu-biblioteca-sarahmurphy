@@ -13,28 +13,38 @@ public class Menu {
             menuOptions.add("1. View List of Books");
             menuOptions.add("2. View List of Movies");
             menuOptions.add("3. Login");
-        } else if (user.getAccountType().equals("customer")) {
-            addMenuOptions(menuOptions);
-            menuOptions.add("6. View My Details");
-            menuOptions.add("7. Logout");
-        } else if (user.getAccountType().equals("librarian")) {
-            addMenuOptions(menuOptions);
-            menuOptions.add("6. View Checked Out Books");
-            menuOptions.add("7. Logout");
+        } else {
+            addMenuOptions(user, menuOptions);
         }
 
         return menuOptions;
     }
 
-    public void addMenuOptions(ArrayList<String> menuOptions) {
+    public void addMenuOptions(User user, ArrayList<String> menuOptions) {
         menuOptions.add("1. View List of Books");
         menuOptions.add("2. View List of Movies");
         menuOptions.add("3. Checkout a Book");
         menuOptions.add("4. Checkout a Movie");
         menuOptions.add("5. Return a Book");
+
+        if(user.getAccountType().equals("customer")) {
+            menuOptions.add("6. View My Details");
+        }
+        if (user.getAccountType().equals("librarian")) {
+            menuOptions.add("6. View Checked Out Books");
+        }
+
+        menuOptions.add("7. Logout");
     }
 
     public void displayMenu(User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
+        getMenuOptions(user);
+        String menuChoice = getUserInput();
+        makeMenuChoice(menuChoice, user, bookshelf, movieshelf);
+        displayMenu(user, bookshelf, movieshelf);
+    }
+
+    public void getMenuOptions(User user) {
         Menu menu = new Menu();
         ArrayList<String> menuOptions = menu.getMenu(user);
 
@@ -42,11 +52,6 @@ public class Menu {
         for (String s : menuOptions) {
             System.out.println(s);
         }
-
-        String menuChoice = getUserInput();
-
-        makeMenuChoice(menuChoice, user, bookshelf, movieshelf);
-        displayMenu(user, bookshelf, movieshelf);
     }
 
     public void makeMenuChoice(String menuChoice, User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
