@@ -49,4 +49,4 @@ AND member_id = member.id;
 SELECT name FROM member, checkout_item
 WHERE member.id = member_id
 GROUP BY member_id
-HAVING count(member_id) > 1
+HAVING count(member_id) > 1;
