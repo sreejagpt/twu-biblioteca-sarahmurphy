@@ -9,13 +9,13 @@ public class BibliotecaApp {
         System.out.println("Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!");
 
         Library library = new Library();
-        ArrayList<Book> bookshelf = library.createBookshelf();
-        ArrayList<Movie> movieshelf = library.createMovieshelf();
+//        ArrayList<Book> bookshelf = library.createBookshelf();
+//        ArrayList<Movie> movieshelf = library.createMovieshelf();
 
         User user = new User();
 
         Menu menu = new Menu();
-        menu.displayMenu(user, bookshelf, movieshelf);
+//        menu.displayMenu(user, bookshelf, movieshelf);
     }
 
     public static String getUserInput() {

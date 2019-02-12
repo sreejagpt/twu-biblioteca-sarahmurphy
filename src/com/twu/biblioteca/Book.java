@@ -1,54 +1,21 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
+public class Book extends LibraryItem {
 
-import static com.twu.biblioteca.BibliotecaApp.*;
+    private String author;
 
-public class Book extends Story {
-
-    public Book() {}
-
-    public Book(String title, String author, int year) {
-        this.title = title;
+    Book(String title, int year, int rating, String author) {
+        super(title, year, rating);
         this.author = author;
-        this.year = year;
-        this.isAvailable = true;
     }
 
-    public String getBook() {
-        return "Title: " + getTitle() + " | Author: " + getAuthor() +
-                " | Published: " + getYear();
+    public String getAuthor() {
+        return author;
     }
 
-    public void returnBook(ArrayList<Book> bookshelf) {
-        System.out.println("Please enter the title of the book you wish to return.");
-        String book = getUserInput();
-
-        for (Book b : bookshelf) {
-            if (b.getTitle().equalsIgnoreCase(book)) {
-                if(!b.isAvailable()) {
-                    b.returnItem();
-                    System.out.println("Thank you for returning the book.");
-                    return;
-                }
-            }
-        }
-            System.out.println("That is not a valid book to return.");
+    @Override
+    public String toString() {
+        return super.toString() +
+                "author='" + author + '\n';
     }
-
-    public void returnItem() {
-            this.isAvailable = true;
-    }
-
-    public void viewCheckedOutBooks(ArrayList<Book> bookshelf) {
-        for(int i = 0; i < bookshelf.size(); i++) {
-            Book book = bookshelf.get(i);
-            if(!book.isAvailable()) {
-                System.out.println(book.getBook());
-                return;
-            }
-        }
-        System.out.println("No books have been checked out");
-    }
-
 }

@@ -1,19 +1,20 @@
 package com.twu.biblioteca;
 
-public class Movie extends Story {
+public class Movie extends LibraryItem {
+    private String director;
 
-    public Movie() {}
-
-    public Movie(String title, int year, String director, int rating) {
-        this.title = title;
-        this.year = year;
+    Movie(String title, int year, int rating, String director) {
+        super(title, year, rating);
         this.director = director;
-        this.rating = rating;
-        this.isAvailable = true;
     }
 
-    public String getMovie() {
-        return "Title: " + getTitle() + " | Year: " + getYear() +
-                " | Director: " + getDirector() + " | Rating: " + getRating();
+    public String getDirector() {
+        return director;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                " director='" + director + '\n';
     }
 }
