@@ -10,17 +10,21 @@ public class Menu {
         ArrayList<String> menuOptions = new ArrayList<>();
 
         if(user.getUsername() == null) {
-            menuOptions.add("1. View List of Books");
-            menuOptions.add("2. View List of Movies");
-            menuOptions.add("3. Login");
+            addLoggedOutMenuOptions(menuOptions);
         } else {
-            addMenuOptions(user, menuOptions);
+            addLoggedInMenuOptions(user, menuOptions);
         }
-
+        
         return menuOptions;
     }
 
-    public void addMenuOptions(User user, ArrayList<String> menuOptions) {
+    public void addLoggedOutMenuOptions(ArrayList<String> menuOptions) {
+        menuOptions.add("1. View List of Books");
+        menuOptions.add("2. View List of Movies");
+        menuOptions.add("3. Login");
+    }
+
+    public void addLoggedInMenuOptions(User user, ArrayList<String> menuOptions) {
         menuOptions.add("1. View List of Books");
         menuOptions.add("2. View List of Movies");
         menuOptions.add("3. Checkout a Book");
@@ -39,8 +43,10 @@ public class Menu {
 
     public void displayMenu(User user, ArrayList<Book> bookshelf, ArrayList<Movie> movieshelf) {
         getMenuOptions(user);
+
         String menuChoice = getUserInput();
         makeMenuChoice(menuChoice, user, bookshelf, movieshelf);
+
         displayMenu(user, bookshelf, movieshelf);
     }
 
@@ -117,7 +123,6 @@ public class Menu {
         String password = getUserInput();
 
         user.login(username, password);
-
         validateUser(user);
 
         return user;
