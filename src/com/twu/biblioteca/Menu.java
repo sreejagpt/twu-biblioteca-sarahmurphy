@@ -14,7 +14,7 @@ public class Menu {
         } else {
             addLoggedInMenuOptions(user, menuOptions);
         }
-        
+
         return menuOptions;
     }
 

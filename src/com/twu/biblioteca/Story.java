@@ -60,9 +60,7 @@ public class Story {
     }
 
     public void checkout() {
-        if(this.isAvailable) {
             this.isAvailable = false;
-        }
     }
 
 }
